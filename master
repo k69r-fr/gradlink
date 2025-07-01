@@ -1,1 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Letter Surprise</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            background-color: #90c3df;
+            text-align: center;
+        }
+        button {
+            padding: 10px 20px;
+            margin-top: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .hidden {
+            display: none;
+        }
+        #photoGallery img {
+            width: 100px;
+            margin: 5px;
+            border: 2px solid #4CAF50;
+            border-radius: 10px;
+            box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+        }
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0,0,0,0.8);
+            justify-content: center;
+            align-items: center;
+        }
+        .lightbox img {
+            max-width: 80vw;
+            max-height: 80vh;
+            border-radius: 10px;
+        }
+        .close {
+            position: absolute;
+            top: 30px;
+            right: 50px;
+            color: #fff;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        #letter {
+            display: none;
+            margin-top: 20px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
 
+    <audio id="backgroundMusic" loop autoplay>
+        <source src="rainy-lofi-city-lofi-music-332746.mp3" type="audio/mpeg">
+    </audio>
+
+    <div id="firstPage">
+        <h1>Letter to example :D</h1>
+        <p>Everything will be written in English</p>
+        <p>(because I'm too lazy to type Chinese hehe)</p>
+        <button id="openButton">Open me!</button>
+    </div>
+
+    <div id="secondPage" class="hidden">
+        <h1>Letter:</h1>
+        <div id="letter">
+            <h3>To example,</h3>
+            <p>example</p>
+            <button id="doneButton">Done reading? I have a surprise.</button>
+        </div>
+    </div>
+
+    <div id="surprise" class="hidden">
+        <h2>Here's our photos :D</h2>
+        <div id="photoGallery">
+            <img src="IMG_20221219_213725_096.jpg" alt="Description of Photo 1" onclick="openLightbox(this.src)">
+            <img src="IMG_20221222_235703_022.jpg" alt="Description of Photo 2" onclick="openLightbox(this.src)">
+            <img src="IMG-20241015-WA0028(1).jpg" alt="Description of Photo 3" onclick="openLightbox(this.src)">
+            <img src="IMG-20241015-WA0032(1).jpg" alt="Description of Photo 4" onclick="openLightbox(this.src)">
+        </div>
+        <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+            <span class="close" onclick="closeLightbox()">&times;</span>
+            <img id="lightboxImg" src="">
+        </div>
+        <button id="graduationButton">Go to next page :D</button>
+    </div>
+
+    <div id="graduationPage" class="hidden">
+        <h2>Again, happy graduation!</h2>
+        <p>example (btw this letter/website is made bc my f6 best frd graduated lol)</p>
+    </div>
+
+    <script>
+        function openLightbox(src) {
+            document.getElementById('lightboxImg').src = src;
+            document.getElementById('lightbox').style.display = 'flex';
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').style.display = 'none';
+        }
+
+        document.getElementById('openButton').onclick = function() {
+            document.getElementById('firstPage').classList.add('hidden');
+            document.getElementById('secondPage').classList.remove('hidden');
+            setTimeout(() => {
+                document.getElementById('letter').style.display = 'block';
+                document.getElementById('letter').style.opacity = 1;
+            }, 10);
+        };
+
+        document.getElementById('doneButton').onclick = function() {
+            document.getElementById('secondPage').classList.add('hidden');
+            document.getElementById('surprise').classList.remove('hidden');
+        };
+
+        document.getElementById('graduationButton').onclick = function() {
+            document.getElementById('surprise').classList.add('hidden');
+            document.getElementById('graduationPage').classList.remove('hidden');
+        };
+    </script>
+</body>
+</html>
